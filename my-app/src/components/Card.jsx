@@ -1,34 +1,28 @@
 function Card(props) {
     const { title, text } = props;
+    let cardInnerContent = null;
 
     if (title && text) {
-        return (
-            <div className="card">
-                <div className="card-body">
-                    <h4 className="card-title">{props.title}</h4>
-                    <p className="card-text">{props.text}</p>
-                </div>
-            </div>
-        );
-    } else if (!text && title) {
-        return (
-            <div className="card">
-                <div className="card-body">
-                    <h4 className="card-title">{props.title}</h4>
-                </div>
-            </div>
-        );
-    } else if (text && !title) {
-        return (
-            <div className="card">
-                <div className="card-body">
-                    <p className="card-text">{props.text}</p>
-                </div>
-            </div>
-        );
+        cardInnerContent = <>
+            <h4 className="card-title">{title}</h4>
+            <p className="card-text">{text}</p>
+        </>;
+    } else if (title) {
+        cardInnerContent = <h4 className="card-title">{title}</h4>;
+    } else if (text) {
+        cardInnerContent = <p className="card-text">{text}</p>;
     } else {
         return true;
     }
+
+
+    return (
+        <div className="card">
+            <div className="card-body">
+                {cardInnerContent}
+            </div>
+        </div>
+    );
 }
 
 export default Card;
